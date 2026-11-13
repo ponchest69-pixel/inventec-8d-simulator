@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "case_id": "INVENTEC-PCBA-8D-MASTER",
+    "title": "Interactive 8D Problem Solving Simulator — Inventec PCBA Case",
+    "fictional_educational_data": true,
+    "language": "en",
+    "excluded_demo_case": "60-minute instructor demonstration using a screw-torque case (strictly excluded from PCBA simulation)",
+    "workshop": {
+      "total_workshop_hours": 8,
+      "lunch_break_hours": 1,
+      "total_participants": 30,
+      "teams_count": 5,
+      "participants_per_team": 6,
+      "simulation_duration_minutes": 225,
+      "discipline_minutes": {
+        "D0": 5,
+        "D1": 5,
+        "D2": 25,
+        "D3": 25,
+        "D4": 65,
+        "D5": 30,
+        "D6": 30,
+        "D7": 25,
+        "D8": 15
+      }
+    }
+  },
+  "d0_public_summary": {
+    "visibility_status": "APPROVED_FOR_D0",
+    "total_units_tested": 1000,
+    "initial_fail_units": 80,
+    "initial_fail_rate_percent": 8.0,
+    "retest_pass_units": 60,
+    "persistent_fail_units": 20,
+    "historical_reference_initial_fail_rate_percent": 2.0,
+    "confirmed_customer_shipments": 0,
+    "confirmed_customer_escapes": 0
+  },
+  "historical_production": {
+    "visibility_status": "GATED_BY_DISCIPLINE",
+    "total_units": 1000,
+    "overall": {
+      "total_units": 1000,
+      "initial_pass": 920,
+      "initial_fail": 80,
+      "initial_fail_rate_percent": 8.0,
+      "retest_pass": 60,
+      "persistent_fail": 20,
+      "fpy_percent": 92.0,
+      "historical_reference_initial_fail_rate_percent": 2.0
+    },
+    "by_recipe": {
+      "original_recipe": {
+        "total_units": 500,
+        "initial_pass": 490,
+        "initial_fail": 10,
+        "retest_pass": 5,
+        "persistent_fail": 5,
+        "fpy_percent": 98.0
+      },
+      "modified_recipe": {
+        "total_units": 500,
+        "initial_pass": 430,
+        "initial_fail": 70,
+        "retest_pass": 55,
+        "persistent_fail": 15,
+        "fpy_percent": 86.0
+      }
+    },
+    "retest_pass_disposition": {
+      "note": "These 60 retest-PASS units are already included in the physical WIP inventory totals.",
+      "total_retest_pass": 60,
+      "released_into_wip": {
+        "total": 48,
+        "original_recipe": 3,
+        "modified_recipe": 45
+      },
+      "held_in_wip": {
+        "total": 12,
+        "original_recipe": 2,
+        "modified_recipe": 10
+      }
+    }
+  },
+  "physical_inventory": {
+    "visibility_status": "GATED_BY_DISCIPLINE",
+    "note": "The 60 retest-PASS units (48 released into WIP, 12 held in WIP) are already included in the WIP totals below.",
+    "totals": {
+      "wip": 748,
+      "finished_goods": 232,
+      "diagnostics": 20,
+      "total_inventory": 1000
+    },
+    "by_recipe": {
+      "original_recipe": {
+        "wip": 350,
+        "finished_goods": 145,
+        "diagnostics": 5,
+        "total": 500
+      },
+      "modified_recipe": {
+        "wip": 398,
+        "finished_goods": 87,
+        "diagnostics": 15,
+        "total": 500
+      }
+    },
+    "customer_exposure": {
+      "confirmed_customer_shipments": 0,
+      "confirmed_customer_escapes": 0
+    }
+  },
+  "reserved_causal_information": {
+    "visibility_status": "RESERVED_UNTIL_AUTHORIZED_EVIDENCE_DISCOVERY",
+    "initial_functional_test_detected_failures": true,
+    "physical_cause": "Insufficient solder at J12 terminal 4 causing intermittent electrical contact.",
+    "occurrence_cause": "Unvalidated thermal reflow recipe change.",
+    "potential_escape_cause": "Release after retest PASS without investigating the original FAIL.",
+    "systemic_cause": "Insufficient change control, independent validation, and retest disposition instructions."
+  },
+  "conceptual_d4_evidence_candidates": {
+    "approval_status": "PENDING_APPROVAL",
+    "items": [
+      {
+        "id": "E01",
+        "summary": "Five intermittent boards fail on both verified fixtures."
+      },
+      {
+        "id": "E02",
+        "summary": "Common component lots across periods; no clear lot correlation."
+      },
+      {
+        "id": "E03",
+        "summary": "Firmware FW-3.2.1 unchanged across all 1,000 units."
+      },
+      {
+        "id": "E04",
+        "summary": "Anomalous J12 solder in 17/20 intermittent FAIL samples versus 1/20 initial PASS samples."
+      },
+      {
+        "id": "E05",
+        "summary": "Reflow recipe change before the second 500 without documented thermal profile validation."
+      },
+      {
+        "id": "E06",
+        "summary": "Ten J12-anomalous boards reproduce the failure; all ten pass after solder repair."
+      },
+      {
+        "id": "E06-B",
+        "summary": "8 J12 defects in 30 modified-recipe units versus 0 in 30 with the validated restored recipe."
+      },
+      {
+        "id": "E07",
+        "summary": "48 retest-PASS units released without investigation; 12 held."
+      },
+      {
+        "id": "E08",
+        "summary": "Insufficient retest disposition instructions and independent change validation."
+      }
+    ]
+  },
+  "conceptual_d5_action_candidates": {
+    "approval_status": "PENDING_APPROVAL",
+    "items": [
+      {
+        "id": "A1",
+        "description": "Restore and validate reflow recipe",
+        "classification": "required"
+      },
+      {
+        "id": "A2",
+        "description": "Repair defective boards",
+        "classification": "complementary"
+      },
+      {
+        "id": "A3",
+        "description": "Increase retest attempts",
+        "classification": "insufficient_as_pca"
+      },
+      {
+        "id": "A4",
+        "description": "Investigate original FAIL before release",
+        "classification": "required"
+      },
+      {
+        "id": "A5",
+        "description": "Independently approve critical recipe changes",
+        "classification": "required"
+      },
+      {
+        "id": "A6",
+        "description": "Temporary reinforced J12 inspection",
+        "classification": "complementary"
+      }
+    ]
+  },
+  "conceptual_d6_pilot_validation": {
+    "approval_status": "PENDING_APPROVAL",
+    "note": "Uses 500 NEW units, separate from the 500 historical contained units. Pilot success does not automatically release historical contained inventory.",
+    "pilot_results": {
+      "new_units_tested": 500,
+      "initial_fail_units": 8,
+      "initial_pass_units": 492,
+      "achieved_fpy_percent": 98.4,
+      "j12_inspected_sample_size": 30,
+      "j12_anomalies_found": 0,
+      "thermal_profile_validated": true,
+      "unauthorized_releases": 0
+    },
+    "proposed_acceptance_criteria": {
+      "minimum_fpy_percent": 98.0,
+      "conforming_thermal_profile_required": true,
+      "j12_sample_size": 30,
+      "max_j12_anomalies_allowed": 0,
+      "max_unauthorized_releases_allowed": 0
+    }
+  },
+  "provisional_scoring_proposal": {
+    "approval_status": "PROVISIONAL_PENDING_VALIDATION",
+    "llm_inference_allowed": false,
+    "proposed_weights_percent": {
+      "evidence": 40,
+      "reasoning": 35,
+      "decision": 25
+    }
+  }
+}
+
